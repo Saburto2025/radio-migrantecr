@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Migrante CR Radio | La voz que nos une</title>
+    <title>Migrante CR Radio | En Vivo</title>
     
     <meta property="og:title" content="Migrante CR Radio | En Vivo">
     <meta property="og:description" content="Sintoniza nuestra radio, chatea en vivo y pide tus canciones.">
@@ -47,7 +47,7 @@
             </div>
 
             <h1 id="title" class="text-3xl md:text-5xl font-extrabold mb-2 tracking-tight">Cargando...</h1>
-            <p id="artist" class="text-yellow-500 font-bold uppercase tracking-[0.3em] text-sm mb-10">En Vivo</p>
+            <p id="artist" class="text-yellow-500 font-bold uppercase tracking-[0.3em] text-sm mb-10 text-zinc-400">En Vivo</p>
             
             <div class="flex flex-wrap justify-center lg:justify-start gap-4">
                 <a href="https://wa.me/50660210724" target="_blank" class="bg-green-600 px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-green-500 transition shadow-lg shadow-green-900/20">
@@ -62,7 +62,7 @@
                 <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 italic">Chat en Vivo</h3>
                 <span class="text-[10px] bg-red-600 px-2 py-0.5 rounded-full font-bold animate-pulse">LIVE</span>
             </div>
-            <iframe src="https://radio.migrantecr.org/public/migrantecr_radio/chat" class="chat-frame glass" frameborder="0" allowtransparency="true"></iframe>
+            <iframe src="https://radio.migrantecr.org/public/migrantecr_radio/chat?embed=true" class="chat-frame glass" frameborder="0" allowtransparency="true"></iframe>
         </div>
 
     </main>
@@ -87,7 +87,6 @@
                 const res = await fetch('https://radio.migrantecr.org/api/nowplaying/migrantecr_radio');
                 const data = await res.json();
                 const song = data.now_playing.song;
-                
                 if (title.innerText !== song.title) {
                     title.innerText = song.title;
                     artist.innerText = song.artist;
