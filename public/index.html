@@ -402,14 +402,15 @@
             }, 100);
         }
 
-        // Native share integration with Clipboard copy fallback
+        // Native share integration with Clipboard copy fallback (removes tracking parameters)
         async function sharePage() {
+            const cleanUrl = window.location.origin + window.location.pathname;
             if (navigator.share) {
                 try {
                     await navigator.share({
                         title: 'Migrante CR Radio',
                         text: 'Sintoniza Migrante CR Radio en Vivo',
-                        url: window.location.href
+                        url: cleanUrl
                     });
                 } catch (err) {
                     console.log('Share cancelled or failed');
@@ -417,10 +418,10 @@
             } else {
                 // Fallback: Copy to clipboard
                 try {
-                    await navigator.clipboard.writeText(window.location.href);
+                    await navigator.clipboard.writeText(cleanUrl);
                     alert("¡Enlace del reproductor copiado al portapapeles! Compártelo con tus amigos.");
                 } catch (err) {
-                    alert("Copia este enlace para compartir: " + window.location.href);
+                    alert("Copia este enlace para compartir: " + cleanUrl);
                 }
             }
         }
