@@ -59,7 +59,7 @@
     </nav>
 
     <!-- Main Content Container -->
-    <main class="flex-grow max-w-7xl mx-auto w-full px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <main class="flex-grow max-w-7xl mx-auto w-full px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- COLUMN 1: Reproductor & Anuncios (5 Cols on large) -->
         <div class="lg:col-span-5 space-y-8 flex flex-col">
@@ -139,10 +139,10 @@
         </div>
 
         <!-- COLUMN 2: Muro de Mensajes & Enlaces (7 Cols on large) -->
-        <div class="lg:col-span-7 space-y-8 flex flex-col justify-between">
+        <div class="lg:col-span-7 space-y-8 flex flex-col">
             
             <!-- Message Wall -->
-            <div class="glass-premium p-6 md:p-8 rounded-[2.5rem] flex-grow flex flex-col justify-between shadow-xl border-white/10">
+            <div class="glass-premium p-6 md:p-8 rounded-[2.5rem] flex flex-col shadow-xl border-white/10">
                 <div>
                     <div class="flex justify-between items-center border-b border-white/5 pb-4 mb-6">
                         <div>
@@ -153,7 +153,7 @@
                     </div>
 
                     <!-- Scrollable Messages Container -->
-                    <div id="messages-list" class="space-y-4 max-h-[360px] overflow-y-auto pr-2 custom-scroll mb-6">
+                    <div id="messages-list" class="space-y-4 max-h-[400px] lg:max-h-[500px] overflow-y-auto pr-2 custom-scroll mb-6">
                         <!-- Messages dynamically added here -->
                     </div>
                 </div>
