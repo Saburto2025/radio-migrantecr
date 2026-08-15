@@ -304,11 +304,11 @@
             messagesList.insertAdjacentHTML(isNew ? 'afterbegin' : 'beforeend', messageHtml);
         }
 
-        // Load messages from Turso API (with LocalStorage/Seed fallback)
+        // Load messages from Vercel API (with LocalStorage/Seed fallback)
         async function loadMessages() {
             messagesList.innerHTML = '<div class="text-center py-4 text-xs text-zinc-500" id="msg-loader">Cargando mensajes...</div>';
             try {
-                const response = await fetch('/api/messages');
+                const response = await fetch('https://www.migrantecr.org/api/radio-messages');
                 if (!response.ok) throw new Error("API error");
                 
                 const messages = await response.json();
@@ -323,7 +323,7 @@
                     seedMessages.forEach(msg => renderMessage(msg));
                 }
             } catch (error) {
-                console.warn("No se pudo conectar con Turso. Usando almacenamiento local de respaldo.", error);
+                console.warn("No se pudo conectar con el servidor Next.js. Usando almacenamiento local de respaldo.", error);
                 const loader = document.getElementById('msg-loader');
                 if (loader) loader.remove();
                 
@@ -359,9 +359,9 @@
             msgForm.reset();
             messagesList.scrollTop = 0;
 
-            // 2. Post to Turso API
+            // 2. Post to Vercel API
             try {
-                const response = await fetch('/api/messages', {
+                const response = await fetch('https://www.migrantecr.org/api/radio-messages', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(newMsg)
@@ -370,7 +370,7 @@
                 if (!response.ok) throw new Error("Error guardando en base de datos.");
                 
             } catch (error) {
-                console.error("Error guardando en Turso, guardando en local storage como respaldo:", error);
+                console.error("Error guardando en base de datos, guardando en local storage como respaldo:", error);
                 
                 // Fallback: Save to localStorage so they don't lose it
                 let saved = localStorage.getItem('radio_messages');
