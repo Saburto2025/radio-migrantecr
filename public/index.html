@@ -231,30 +231,66 @@
             
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 <!-- Video 1 -->
-                <div class="space-y-2 flex flex-col items-center">
-                    <div class="aspect-[9/16] w-full max-w-[240px] rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-zinc-900 transition hover:scale-[1.02] duration-300">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/8AJioe5YNAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="space-y-2 flex flex-col items-center w-full">
+                    <span class="font-bold text-[10px] md:text-xs text-zinc-400 text-center uppercase tracking-wider truncate w-full px-2" title="Promoción Radio MigranteCR">Promoción Radio MigranteCR</span>
+                    <div id="video-container-1" class="relative aspect-[9/16] w-full max-w-[240px] rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-zinc-900 transition hover:scale-[1.02] duration-300 group cursor-pointer" onclick="launchVideo('video-container-1', 'iframe-1', '8AJioe5YNAs')">
+                        <img id="preview-img-1" src="https://img.youtube.com/vi/8AJioe5YNAs/0.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Video Thumbnail">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition duration-300">
+                            <div class="bg-yellow-500 p-4 rounded-full text-black shadow-2xl scale-95 group-hover:scale-100 transition duration-300">
+                                <svg class="w-7 h-7 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div id="iframe-wrapper-1" class="hidden w-full h-full">
+                            <iframe id="iframe-1" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Video 2 -->
-                <div class="space-y-2 flex flex-col items-center">
-                    <div class="aspect-[9/16] w-full max-w-[240px] rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-zinc-900 transition hover:scale-[1.02] duration-300">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/1_ms6DhJwUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="space-y-2 flex flex-col items-center w-full">
+                    <span class="font-bold text-[10px] md:text-xs text-zinc-400 text-center uppercase tracking-wider truncate w-full px-2" title="Envíos y Remesas Migrante">Envíos y Remesas Migrante</span>
+                    <div id="video-container-2" class="relative aspect-[9/16] w-full max-w-[240px] rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-zinc-900 transition hover:scale-[1.02] duration-300 group cursor-pointer" onclick="launchVideo('video-container-2', 'iframe-2', '1_ms6DhJwUg')">
+                        <img id="preview-img-2" src="https://img.youtube.com/vi/1_ms6DhJwUg/0.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Video Thumbnail">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition duration-300">
+                            <div class="bg-yellow-500 p-4 rounded-full text-black shadow-2xl scale-95 group-hover:scale-100 transition duration-300">
+                                <svg class="w-7 h-7 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div id="iframe-wrapper-2" class="hidden w-full h-full">
+                            <iframe id="iframe-2" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Video 3 -->
-                <div class="space-y-2 flex flex-col items-center">
-                    <div class="aspect-[9/16] w-full max-w-[240px] rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-zinc-900 transition hover:scale-[1.02] duration-300">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/C5Zm-ZKTNys" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="space-y-2 flex flex-col items-center w-full">
+                    <span class="font-bold text-[10px] md:text-xs text-zinc-400 text-center uppercase tracking-wider truncate w-full px-2" title="Restaurante Sabor Latino">Restaurante Sabor Latino</span>
+                    <div id="video-container-3" class="relative aspect-[9/16] w-full max-w-[240px] rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-zinc-900 transition hover:scale-[1.02] duration-300 group cursor-pointer" onclick="launchVideo('video-container-3', 'iframe-3', 'C5Zm-ZKTNys')">
+                        <img id="preview-img-3" src="https://img.youtube.com/vi/C5Zm-ZKTNys/0.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Video Thumbnail">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition duration-300">
+                            <div class="bg-yellow-500 p-4 rounded-full text-black shadow-2xl scale-95 group-hover:scale-100 transition duration-300">
+                                <svg class="w-7 h-7 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div id="iframe-wrapper-3" class="hidden w-full h-full">
+                            <iframe id="iframe-3" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Video 4 -->
-                <div class="space-y-2 flex flex-col items-center">
-                    <div class="aspect-[9/16] w-full max-w-[240px] rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-zinc-900 transition hover:scale-[1.02] duration-300">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/fpf-2OBN3tk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="space-y-2 flex flex-col items-center w-full">
+                    <span class="font-bold text-[10px] md:text-xs text-zinc-400 text-center uppercase tracking-wider truncate w-full px-2" title="Glow Estética y Barbería">Glow Estética y Barbería</span>
+                    <div id="video-container-4" class="relative aspect-[9/16] w-full max-w-[240px] rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-zinc-900 transition hover:scale-[1.02] duration-300 group cursor-pointer" onclick="launchVideo('video-container-4', 'iframe-4', 'fpf-2OBN3tk')">
+                        <img id="preview-img-4" src="https://img.youtube.com/vi/fpf-2OBN3tk/0.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Video Thumbnail">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition duration-300">
+                            <div class="bg-yellow-500 p-4 rounded-full text-black shadow-2xl scale-95 group-hover:scale-100 transition duration-300">
+                                <svg class="w-7 h-7 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div id="iframe-wrapper-4" class="hidden w-full h-full">
+                            <iframe id="iframe-4" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -324,6 +360,36 @@
                 playSvg.innerHTML = '<path d="M8 5v14l11-7z"/>';
             }
         };
+
+        // Custom function to load video in iframe and launch native fullscreen
+        function launchVideo(containerId, iframeId, videoId) {
+            const container = document.getElementById(containerId);
+            const iframe = document.getElementById(iframeId);
+            const wrapper = document.getElementById('iframe-wrapper-' + containerId.split('-').pop());
+            const previewImg = document.getElementById('preview-img-' + containerId.split('-').pop());
+            const overlay = container.querySelector('.absolute');
+
+            // Set iframe src to autoplay and enable fullscreen
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
+
+            // Swap thumbnail preview for actual iframe player
+            previewImg.classList.add('hidden');
+            overlay.classList.add('hidden');
+            wrapper.classList.remove('hidden');
+
+            // Trigger native Fullscreen API on the iframe element directly
+            setTimeout(() => {
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.webkitRequestFullscreen) {
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.mozRequestFullScreen) {
+                    iframe.mozRequestFullScreen();
+                } else if (iframe.msRequestFullscreen) {
+                    iframe.msRequestFullscreen();
+                }
+            }, 100);
+        }
 
         // Render message on wall
         function renderMessage(msg, isNew = false) {
