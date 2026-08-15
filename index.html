@@ -86,6 +86,7 @@
             </div>
 
             <!-- Sponsors Board -->
+            <!-- CONFIGURA AQUÍ TUS PUBLICIDADES: Modifica los enlaces "href", imágenes, nombres y textos de cada tarjeta. -->
             <div class="glass-premium p-6 rounded-[2.5rem] space-y-4">
                 <div class="flex items-center justify-between border-b border-white/5 pb-3">
                     <div>
@@ -296,27 +297,49 @@
                             <span class="text-[9px] bg-white/5 px-2 py-0.5 rounded text-zinc-400 shrink-0 font-medium">${msg.country}</span>
                         </div>
                         <p class="text-xs text-zinc-300 leading-relaxed">${msg.text}</p>
-                        <div class="text-[8px] text-zinc-500 mt-2">${msg.time}</div>
+                        <div class="text-[8px] text-zinc-500 mt-2">${msg.time || 'Hace un momento'}</div>
                     </div>
                 </div>
             `;
             messagesList.insertAdjacentHTML(isNew ? 'afterbegin' : 'beforeend', messageHtml);
         }
 
-        // Load messages from localStorage or Seed
-        function loadMessages() {
-            messagesList.innerHTML = '';
-            let saved = localStorage.getItem('radio_messages');
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                parsed.forEach(msg => renderMessage(msg));
-            } else {
-                seedMessages.forEach(msg => renderMessage(msg));
+        // Load messages from Turso API (with LocalStorage/Seed fallback)
+        async function loadMessages() {
+            messagesList.innerHTML = '<div class="text-center py-4 text-xs text-zinc-500" id="msg-loader">Cargando mensajes...</div>';
+            try {
+                const response = await fetch('/api/messages');
+                if (!response.ok) throw new Error("API error");
+                
+                const messages = await response.json();
+                
+                const loader = document.getElementById('msg-loader');
+                if (loader) loader.remove();
+                
+                if (messages.length > 0) {
+                    messages.forEach(msg => renderMessage(msg));
+                } else {
+                    // Fallback to seeds if DB is empty
+                    seedMessages.forEach(msg => renderMessage(msg));
+                }
+            } catch (error) {
+                console.warn("No se pudo conectar con Turso. Usando almacenamiento local de respaldo.", error);
+                const loader = document.getElementById('msg-loader');
+                if (loader) loader.remove();
+                
+                // Fallback to localStorage or Seed
+                let saved = localStorage.getItem('radio_messages');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    parsed.forEach(msg => renderMessage(msg));
+                } else {
+                    seedMessages.forEach(msg => renderMessage(msg));
+                }
             }
         }
 
         // Handle new message post
-        msgForm.onsubmit = (e) => {
+        msgForm.onsubmit = async (e) => {
             e.preventDefault();
             const name = msgName.value.trim();
             const country = msgCountry.value;
@@ -331,18 +354,30 @@
                 time: "Hace un momento"
             };
 
-            // Save to localStorage
-            let saved = localStorage.getItem('radio_messages');
-            let messages = saved ? JSON.parse(saved) : [...seedMessages];
-            messages.unshift(newMsg); // Add new on top
-            localStorage.setItem('radio_messages', JSON.stringify(messages));
-
-            // Render and reset form
+            // 1. Optimistic UI update (show immediately)
             renderMessage(newMsg, true);
             msgForm.reset();
-            
-            // Auto scroll to top of list
             messagesList.scrollTop = 0;
+
+            // 2. Post to Turso API
+            try {
+                const response = await fetch('/api/messages', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newMsg)
+                });
+                
+                if (!response.ok) throw new Error("Error guardando en base de datos.");
+                
+            } catch (error) {
+                console.error("Error guardando en Turso, guardando en local storage como respaldo:", error);
+                
+                // Fallback: Save to localStorage so they don't lose it
+                let saved = localStorage.getItem('radio_messages');
+                let messages = saved ? JSON.parse(saved) : [...seedMessages];
+                messages.unshift(newMsg);
+                localStorage.setItem('radio_messages', JSON.stringify(messages));
+            }
         };
 
         // Initialize Web Radio
