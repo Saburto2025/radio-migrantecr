@@ -538,12 +538,13 @@
         fetchNowPlaying();
         loadMessages();
 
-        // Lightbox Modal controllers
-        const lightboxModal = document.getElementById('lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxContent = document.getElementById('lightbox-content');
-
+        // Lightbox Modal controllers (queries elements dynamically to avoid load-order bugs)
         window.openLightbox = function(url) {
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxContent = document.getElementById('lightbox-content');
+            if (!lightboxModal || !lightboxImg || !lightboxContent) return;
+
             lightboxImg.src = url;
             lightboxModal.classList.remove('hidden');
             lightboxModal.classList.add('flex');
@@ -557,6 +558,11 @@
         };
 
         window.closeLightbox = function() {
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxContent = document.getElementById('lightbox-content');
+            if (!lightboxModal || !lightboxImg || !lightboxContent) return;
+
             lightboxModal.classList.remove('opacity-100');
             lightboxModal.classList.add('opacity-0');
             lightboxContent.classList.remove('scale-100');
@@ -569,23 +575,15 @@
                 document.body.style.overflow = ''; // Restore page scrolling
             }, 300);
         };
-
-        lightboxModal.onclick = function() {
-            window.closeLightbox();
-        };
-
-        lightboxImg.onclick = function(e) {
-            e.stopPropagation(); // Avoid closing modal when clicking the image content itself
-        };
     </script>
 
-    <!-- Lightbox Modal for Ad Banners -->
-    <div id="lightbox-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[100] hidden items-center justify-center p-4 cursor-zoom-out opacity-0 transition-opacity duration-300">
+    <!-- Lightbox Modal for Ad Banners (handles close events inline) -->
+    <div id="lightbox-modal" onclick="window.closeLightbox()" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[100] hidden items-center justify-center p-4 cursor-zoom-out opacity-0 transition-opacity duration-300">
         <button class="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/25 p-3 rounded-full transition-all duration-300 z-[101]" onclick="window.closeLightbox()">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <div class="relative max-w-4xl max-h-[85vh] flex items-center justify-center scale-95 transition-transform duration-300 ease-out" id="lightbox-content">
-            <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain rounded-3xl shadow-2xl border border-white/10" alt="Vista ampliada">
+            <img id="lightbox-img" src="" onclick="event.stopPropagation()" class="max-w-full max-h-[85vh] object-contain rounded-3xl shadow-2xl border border-white/10" alt="Vista ampliada">
         </div>
     </div>
 </body>
